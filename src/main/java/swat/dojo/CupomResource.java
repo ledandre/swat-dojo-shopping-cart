@@ -5,11 +5,10 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/hello")
-public class GreetingResource {
+@Path("/cupom")
+public class CupomResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "Hello RESTEasy";
     }

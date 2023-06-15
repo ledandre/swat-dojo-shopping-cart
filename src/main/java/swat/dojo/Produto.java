@@ -3,13 +3,9 @@ package swat.dojo;
 public class Produto {
     
     private Long id;
-    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
     private String descricao;
-
     private Double valor;
-    @Column(nullable = false)
 
     public Produto(String nome, Double valor){
         this.nome = nome;
