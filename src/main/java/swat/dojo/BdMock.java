@@ -23,6 +23,9 @@ public class BdMock {
     public Carrinho getCarrinho(){
         return carrinho;
     }
+    
+    public void setCarrinho(){
+    }
 
     public void salvarProduto(Produto produto) {
         produtos.put(produto.getId(), produto);

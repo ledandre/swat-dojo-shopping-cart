@@ -7,7 +7,9 @@ public class Cupom {
     public Double valor = 0d;
     boolean valorFixo = false;
 
-    public Cupom(String nome, Double valor, Boolean valorFixo){
+    public Cupom(String nome, Double valor, boolean valorFixo){
+        this.nome = nome;
+        this.valorFixo = valorFixo;
         if(valorFixo){
             this.valor = valor;
         }else{
@@ -29,4 +31,20 @@ public class Cupom {
     public void setValor(Double valor){
         this.valor = valor;
     }
+
+    public boolean isValorFixo(){
+        return valorFixo;
+    }
+
+    public void setPorcentagemDesconto(Double porcentagemDesconto) {
+		this.porcentagemDesconto = porcentagemDesconto;
+	}
+
+    public void setValorFixo(boolean valorFixo) {
+		this.valorFixo = valorFixo;
+	}
+
+	public Double getPorcentagemDesconto() {
+		return porcentagemDesconto;
+	}
 }
