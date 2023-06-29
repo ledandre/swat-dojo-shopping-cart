@@ -7,7 +7,7 @@ public class Carrinho {
 	
 	private List<Produto> produtos = new ArrayList();
 	private Double total = 0d;
-	private Double cupom;
+	private Cupom cupom;
 	private Integer id = 1;
 
 	public void calcularTotal(){
@@ -15,6 +15,16 @@ public class Carrinho {
         for (Produto produto : getProdutos()) {
             total += produto.getValor();
         }
+
+        if(cupom !=null){
+			if(cupom.isValorFixo()){
+				total -= cupom.getValor();
+			} else {
+				Double desconto = total * cupom.getPorcentagemDesconto() / 100;
+				total -= desconto;
+			}
+        }
+
         setTotal(total);
 	}
 
@@ -34,10 +44,11 @@ public class Carrinho {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	public Double getCupom() {
+	public Cupom getCupom() {
 		return cupom;
 	}
-	public void setCupom(Double cupom) {
+	public void setCupom(Cupom cupom) {
+
 		this.cupom = cupom;
 	}
 	

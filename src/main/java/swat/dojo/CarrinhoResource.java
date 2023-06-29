@@ -2,8 +2,10 @@ package swat.dojo;
 
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 
 @Path("/carrinho")
@@ -21,7 +23,16 @@ public class CarrinhoResource {
     @GET
     public Response getCarrinho(){
         Carrinho carrinho = bancoMock.getCarrinho();
+        carrinho.calcularTotal();
         return Response.ok(carrinho).build();
+    }
+
+    @PATCH
+    @Path("/cupom")
+    public Response aplicarCupom(Cupom cupom){
+        Carrinho carrinho = bancoMock.getCarrinho();
+        carrinho.setCupom(cupom);
+        return Response.ok().build();
     }
 
     @GET
@@ -32,11 +43,12 @@ public class CarrinhoResource {
     }
 
     @DELETE
-    @Path("/produtos")
-    public Response deleteProdutoCarrinho(Produto produto){
+    @Path("/produtos/{produtoId}")
+    public Response deleteProdutoCarrinho(@PathParam("produtoId") Long produtoId){
       Carrinho carrinho = bancoMock.getCarrinho();
-      carrinho.getProdutos().remove(produto);
+      carrinho.getProdutos().removeIf(produto -> produtoId.equals(produto.getId()));
       return Response.ok().build();
     }
+    
 
 }
